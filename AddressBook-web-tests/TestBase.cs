@@ -112,5 +112,10 @@ namespace AddressBook_web_tests
             driver.FindElement(By.Name("lastname")).Clear();
             driver.FindElement(By.Name("lastname")).SendKeys(contact.LastName);
         }
+        protected void ReturnToHomePage()
+        {
+            driver.FindElement(By.LinkText("home page")).Click();
+            driver.FindElement(By.LinkText("Logout")).Click();
+        }
     }
 }

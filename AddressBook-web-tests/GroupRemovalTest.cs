@@ -10,8 +10,6 @@ namespace AddressBook_web_tests
     [TestFixture]
     public class GroupRemovalTests : TestBase
     {
-    
-
         [Test]
         public void GroupRemovalTest()
         {
@@ -22,8 +20,6 @@ namespace AddressBook_web_tests
             RemoveGroup();
             ReturnToGroupsPage();
         }
-
-
     }
 }
 

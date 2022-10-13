@@ -13,8 +13,6 @@ namespace AddressBook_web_tests
     [TestFixture]
     public class AddNewContact : TestBase
     {
-       
-
         [Test]
         public void AddNewUserTest()
         {
@@ -25,7 +23,7 @@ namespace AddressBook_web_tests
             contact.LastName = "test2";
             FillContactForm(contact);
             SubmitContactCreation();
-            ReturnToGroupsPage();
+            ReturnToHomePage();
         }
     }
 }
