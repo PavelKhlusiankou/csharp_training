@@ -11,19 +11,20 @@ using OpenQA.Selenium.Support.UI;
 namespace AddressBook_web_tests
 {
     [TestFixture]
-    public class AddNewContact : TestBase
+    public class AddNewContactTest : TestBase
     {
         [Test]
         public void AddNewUserTest()
         {
-            GoToHomePage();
-            Login(new AccountData("admin", "secret")); ;
-            InitContactCreation();
+            app.Navigator.GoToHomePage();
+            app.Auth.Login(new AccountData("admin", "secret")); ;
+            app.Contact.InitContactCreation();
             ContactData contact = new ContactData("test1");
             contact.LastName = "test2";
-            FillContactForm(contact);
-            SubmitContactCreation();
-            ReturnToHomePage();
+            app.Contact.FillContactForm(contact);
+            app.Contact.SubmitContactCreation();
+            app.Navigator.ReturnToHomePage();
+            app.Navigator.Logout();
         }
     }
 }
