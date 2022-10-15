@@ -5,8 +5,12 @@ namespace AddressBook_web_tests
 {
     public class HelperBase
     {
+        public ApplicationManager manager;
         public IWebDriver driver;
 
-        public HelperBase(IWebDriver driver) { this.driver = driver; }  
+        public HelperBase(ApplicationManager manager) {
+            this.manager = manager;
+            driver = manager.Driver; 
+        }  
     }
 }

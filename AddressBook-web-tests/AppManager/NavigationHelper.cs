@@ -13,12 +13,14 @@ namespace AddressBook_web_tests
     {
         public string baseURL;
 
-        public NavigationHelper(IWebDriver driver, string baseURL) : base(driver)
+        public NavigationHelper(ApplicationManager manager, string baseURL) 
+            : base(manager)
         {
+            this.baseURL = baseURL;
         }
         public void GoToHomePage()
         {
-            driver.Navigate().GoToUrl("http://localhost/addressbook/addressbook/");
+            driver.Navigate().GoToUrl(baseURL);
         }
 
         public void GoToGroupsPage()
