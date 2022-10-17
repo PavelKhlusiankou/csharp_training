@@ -86,6 +86,5 @@ namespace AddressBook_web_tests
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             return this;
         }
-
     }
 }

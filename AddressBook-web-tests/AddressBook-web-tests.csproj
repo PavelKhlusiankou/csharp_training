@@ -66,6 +66,7 @@
     <Compile Include="Circle.cs" />
     <Compile Include="AppManager\ContactHelper.cs" />
     <Compile Include="AppManager\GroupHelper.cs" />
+    <Compile Include="TestSuiteFixture.cs" />
     <Compile Include="Tests\ContactModitificationTests.cs" />
     <Compile Include="Tests\ContactRemovalTests.cs" />
     <Compile Include="Tests\GroupModificationTests.cs" />
