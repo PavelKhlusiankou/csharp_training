@@ -76,11 +76,19 @@ namespace AddressBook_web_tests
             return this;
         }
 
-        public ContactHelper SelectContact()
+        public ContactHelper SelectContact(ContactData contact)
         {
+            if (!IsElementPresent(By.Name("selected[]")))
+            {
+                InitContactCreation();
+                FillContactForm(contact);
+                SubmitContactCreation();
+                return this;
+            }
             driver.FindElement(By.Name("selected[]")).Click();
             return this;
         }
+
         public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
