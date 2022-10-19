@@ -24,7 +24,7 @@ namespace AddressBook_web_tests
         private ApplicationManager()
         {
             driver = new FirefoxDriver();
-            baseURL = "http://localhost/addressbook/addressbook";
+            baseURL = "http://localhost/addressbook";
 
 
             loginHelper = new LoginHelper(this);
@@ -49,7 +49,9 @@ namespace AddressBook_web_tests
         {
             if (! app.IsValueCreated)
             {
-                app.Value = new ApplicationManager();
+                ApplicationManager newInstance = new ApplicationManager();  
+                newInstance.Navigator.GoToHomePage();
+                app.Value = newInstance;
             }
             return app.Value;
         }

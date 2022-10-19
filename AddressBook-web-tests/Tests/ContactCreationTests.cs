@@ -11,7 +11,7 @@ using OpenQA.Selenium.Support.UI;
 namespace AddressBook_web_tests
 {
     [TestFixture]
-    public class ContactCreationTests : TestBase
+    public class ContactCreationTests : AuthTestBase
     {
         [Test]
         public void AddNewUserTest()

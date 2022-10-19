@@ -33,14 +33,14 @@ namespace AddressBook_web_tests
 
         public ContactHelper Remove(int p)
         {
-            SelectContact(p);
+            SelectContact();
             RemoveContact();
             ConfirmationOfDeleting();
             return this;
         }
         public ContactHelper Mogify(int p, ContactData newData)
         {
-            SelectContact(p);
+            SelectContact();
             InitContactModification();
             FillContactForm(newData);
             SubmitContactModification();
@@ -76,9 +76,9 @@ namespace AddressBook_web_tests
             return this;
         }
 
-        public ContactHelper SelectContact(int index)
+        public ContactHelper SelectContact()
         {
-            driver.FindElement(By.XPath("//input[@id= " + index +"]")).Click();
+            driver.FindElement(By.Name("selected[]")).Click();
             return this;
         }
         public ContactHelper RemoveContact()
