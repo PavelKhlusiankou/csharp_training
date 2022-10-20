@@ -14,7 +14,9 @@ namespace AddressBook_web_tests
         [Test]
         public void ContactRemovalTest()
         {
-            app.Contact.Remove(1);
+            ContactData newData = new ContactData("test11");
+            newData.LastName = "test12";
+            app.Contact.Remove(1, newData);
         }
     }
 }

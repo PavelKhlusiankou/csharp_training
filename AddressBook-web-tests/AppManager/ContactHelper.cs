@@ -31,16 +31,17 @@ namespace AddressBook_web_tests
             return this;
         }
 
-        public ContactHelper Remove(int p)
+        public ContactHelper Remove(int p, ContactData newData)
         {
-            SelectContact();
+
+            SelectContact(newData);
             RemoveContact();
             ConfirmationOfDeleting();
             return this;
         }
-        public ContactHelper Mogify(int p, ContactData newData)
+        public ContactHelper Mogify(int p, ContactData newData, ContactData contact)
         {
-            SelectContact();
+            SelectContact(contact);
             InitContactModification();
             FillContactForm(newData);
             SubmitContactModification();
@@ -83,6 +84,8 @@ namespace AddressBook_web_tests
                 InitContactCreation();
                 FillContactForm(contact);
                 SubmitContactCreation();
+                manager.Navigator.ReturnToHomePage();
+                driver.FindElement(By.Name("selected[]")).Click();
                 return this;
             }
             driver.FindElement(By.Name("selected[]")).Click();

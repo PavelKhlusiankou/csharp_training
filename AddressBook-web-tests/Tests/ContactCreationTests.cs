@@ -19,6 +19,7 @@ namespace AddressBook_web_tests
 
             ContactData contact = new ContactData("test1");
             contact.LastName = "test2";
+
             app.Contact.Create(contact);
             app.Navigator.ReturnToHomePage();
         }

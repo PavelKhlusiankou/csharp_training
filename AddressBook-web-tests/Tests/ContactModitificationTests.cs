@@ -15,8 +15,10 @@ namespace AddressBook_web_tests
         {
             ContactData newData = new ContactData("test11");
             newData.LastName = "test12";
+            ContactData contact = new ContactData("test1");
+            contact.LastName = "test2";
 
-            app.Contact.Mogify(1, newData);
+            app.Contact.Mogify(1, newData, contact);
             app.Navigator.ReturnToHomePage();
         }
     }
