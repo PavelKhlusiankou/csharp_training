@@ -85,8 +85,6 @@ namespace AddressBook_web_tests
                 FillContactForm(contact);
                 SubmitContactCreation();
                 manager.Navigator.ReturnToHomePage();
-                driver.FindElement(By.Name("selected[]")).Click();
-                return this;
             }
             driver.FindElement(By.Name("selected[]")).Click();
             return this;

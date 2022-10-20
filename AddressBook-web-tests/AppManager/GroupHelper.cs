@@ -35,10 +35,10 @@ namespace AddressBook_web_tests
             return this;
         }
 
-        public GroupHelper Mogify(int p, GroupData newData)
+        public GroupHelper Mogify(int p, GroupData newData, GroupData group)
         {
             manager.Navigator.GoToGroupsPage();
-            SelectGroup(p);
+            SelectGroup(p, group);
             InitGroupModification();
             FillGroupForm(newData);
             SubmitGroupModification();
@@ -48,10 +48,10 @@ namespace AddressBook_web_tests
         }
 
 
-        public GroupHelper Remove(int p)
+        public GroupHelper Remove(int p, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
-            SelectGroup(p);
+            SelectGroup(p, newData);
             RemoveGroup();
             ReturnToGroupsPage();
             return this;
@@ -76,8 +76,15 @@ namespace AddressBook_web_tests
             return this;
         }
 
-        public GroupHelper SelectGroup(int index)
+        public GroupHelper SelectGroup(int index, GroupData group)
         {
+            if (!IsElementPresent(By.Name("selected[]")))
+            {
+                InitGroupCreation();
+                FillGroupForm(group);
+                SubmitGroupCreation();
+                ReturnToGroupsPage();
+            }
             driver.FindElement(By.XPath("//div[@id='content']/form/span[" + index + "]/input")).Click();
             return this;
         }
