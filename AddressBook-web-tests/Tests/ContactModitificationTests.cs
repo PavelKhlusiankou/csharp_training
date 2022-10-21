@@ -18,8 +18,16 @@ namespace AddressBook_web_tests
             ContactData contact = new ContactData("test1");
             contact.LastName = "test2";
 
-            app.Contact.Mogify(1, newData, contact);
+            List<ContactData> oldContacts = app.Contact.GetContactList();
+
+            app.Contact.Mogify(0, newData, contact);
             app.Navigator.ReturnToHomePage();
+
+            List<ContactData> newContacts = app.Contact.GetContactList();
+            oldContacts[0].FirstName = newData.FirstName;
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }

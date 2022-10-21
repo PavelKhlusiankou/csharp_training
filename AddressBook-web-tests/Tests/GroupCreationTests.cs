@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace AddressBook_web_tests
 {
@@ -16,7 +17,16 @@ namespace AddressBook_web_tests
             GroupData group = new GroupData("test1");
             group.Header = "test2";
             group.Footer = "test3";
+
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
             app.Groups.Create(group);
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups.Add(group); 
+            oldGroups.Sort();
+            newGroups.Sort();    
+            Assert.AreEqual(oldGroups, newGroups);
         }
 
         [Test]
@@ -25,7 +35,34 @@ namespace AddressBook_web_tests
             GroupData group = new GroupData("");
             group.Header = "";
             group.Footer = "";
+
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
             app.Groups.Create(group);
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+        }
+
+        [Test]
+        public void BadNameCreationTest()
+        {
+            GroupData group = new GroupData("a'a");
+            group.Header = "";
+            group.Footer = "";
+
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
+            app.Groups.Create(group);
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }

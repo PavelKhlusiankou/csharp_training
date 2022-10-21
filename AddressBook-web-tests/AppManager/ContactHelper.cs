@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -94,6 +95,17 @@ namespace AddressBook_web_tests
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             return this;
+        }
+
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            ICollection<IWebElement> elements = driver.FindElements(By.Name("selected[]"));
+            foreach (IWebElement element in elements)
+            {
+                contacts.Add(new ContactData(element.Text));
+            }
+            return contacts;
         }
     }
 }
