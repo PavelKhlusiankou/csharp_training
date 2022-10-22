@@ -27,8 +27,10 @@ namespace AddressBook_web_tests
             app.Contact.SubmitContactModification();
             app.Navigator.ReturnToHomePage();
 
+            Assert.AreEqual(oldContacts.Count, app.Contact.GetContactCount());
+
             List<ContactData> newContacts = app.Contact.GetContactList();
-            oldContacts[0].FirstName = newData.FirstName;
+            oldContacts[1].FirstName = newData.FirstName;
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);

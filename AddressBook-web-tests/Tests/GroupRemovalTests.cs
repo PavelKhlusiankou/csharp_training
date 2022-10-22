@@ -28,6 +28,8 @@ namespace AddressBook_web_tests
             app.Groups.RemoveGroup();
             app.Groups.ReturnToGroupsPage();
 
+            Assert.AreEqual(oldGroups.Count - 1, app.Groups.GetGroupCount());
+
             List<GroupData> newGroups = app.Groups.GetGroupList();
 
 
