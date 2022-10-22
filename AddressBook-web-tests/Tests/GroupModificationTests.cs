@@ -21,9 +21,15 @@ namespace AddressBook_web_tests
             newData.Header = null;
             newData.Footer = null;
 
+            app.Navigator.GoToGroupsPage();
+            app.Groups.SelectGroup(0, group);
+
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            app.Groups.Mogify(0, newData, group);
+            app.Groups.InitGroupModification();
+            app.Groups.FillGroupForm(newData);
+            app.Groups.SubmitGroupModification();
+            app.Groups.ReturnToGroupsPage();
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
             oldGroups[0].Name = newData.Name;

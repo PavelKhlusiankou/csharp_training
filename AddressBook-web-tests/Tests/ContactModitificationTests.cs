@@ -18,9 +18,13 @@ namespace AddressBook_web_tests
             ContactData contact = new ContactData("test1");
             contact.LastName = "test2";
 
+            app.Contact.SelectContact(contact);
+
             List<ContactData> oldContacts = app.Contact.GetContactList();
 
-            app.Contact.Mogify(0, newData, contact);
+            app.Contact.InitContactModification();
+            app.Contact.FillContactForm(newData);
+            app.Contact.SubmitContactModification();
             app.Navigator.ReturnToHomePage();
 
             List<ContactData> newContacts = app.Contact.GetContactList();

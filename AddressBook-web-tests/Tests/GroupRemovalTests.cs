@@ -14,13 +14,19 @@ namespace AddressBook_web_tests
         [Test]
         public void GroupRemovalTest()
         {
-            GroupData group = new GroupData("test1");
-            group.Header = "test2";
-            group.Footer = "test3";
+            GroupData newData = new GroupData("test11");
+            newData.Header = null;
+            newData.Footer = null;
+
+
+            app.Navigator.GoToGroupsPage();
+            app.Groups.SelectGroup(0, newData);
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            app.Groups.Remove(0, group);
+
+            app.Groups.RemoveGroup();
+            app.Groups.ReturnToGroupsPage();
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
 

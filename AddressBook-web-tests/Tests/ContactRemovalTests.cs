@@ -18,9 +18,12 @@ namespace AddressBook_web_tests
             ContactData newData = new ContactData("test11");
             newData.LastName = "test12";
 
+            app.Contact.SelectContact(newData);
+
             List<ContactData> oldContacts = app.Contact.GetContactList();
 
-            app.Contact.Remove(0, newData);
+            app.Contact.RemoveContact();
+            app.Contact.ConfirmationOfDeleting();
 
             List<ContactData> newContacts = app.Contact.GetContactList();
 

@@ -36,29 +36,6 @@ namespace AddressBook_web_tests
             return this;
         }
 
-        public GroupHelper Mogify(int p, GroupData newData, GroupData group)
-        {
-            manager.Navigator.GoToGroupsPage();
-            SelectGroup(p, group);
-            InitGroupModification();
-            FillGroupForm(newData);
-            SubmitGroupModification();
-            ReturnToGroupsPage();
-
-            return this;
-        }
-
-
-        public GroupHelper Remove(int p, GroupData newData)
-        {
-            manager.Navigator.GoToGroupsPage();
-            SelectGroup(p, newData);
-            RemoveGroup();
-            ReturnToGroupsPage();
-            return this;
-        }
-
-
         public GroupHelper ReturnToGroupsPage()
         {
             driver.FindElement(By.LinkText("group page")).Click();

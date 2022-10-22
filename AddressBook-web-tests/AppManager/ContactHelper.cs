@@ -32,30 +32,13 @@ namespace AddressBook_web_tests
             return this;
         }
 
-        public ContactHelper Remove(int p, ContactData newData)
-        {
-
-            SelectContact(newData);
-            RemoveContact();
-            ConfirmationOfDeleting();
-            return this;
-        }
-        public ContactHelper Mogify(int p, ContactData newData, ContactData contact)
-        {
-            SelectContact(contact);
-            InitContactModification();
-            FillContactForm(newData);
-            SubmitContactModification();
-            return this;
-        }
-
-        private ContactHelper SubmitContactModification()
+        public ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[22]")).Click();
             return this;
         }
 
-        private ContactHelper InitContactModification()
+        public ContactHelper InitContactModification()
         {
             driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).Click();
             return this;
@@ -80,7 +63,7 @@ namespace AddressBook_web_tests
 
         public ContactHelper SelectContact(ContactData contact)
         {
-            if (!IsElementPresent(By.Name("selected[]")))
+            if (!IsElementPresent(By.ClassName("entry")))
             {
                 InitContactCreation();
                 FillContactForm(contact);
@@ -100,7 +83,7 @@ namespace AddressBook_web_tests
         public List<ContactData> GetContactList()
         {
             List<ContactData> contacts = new List<ContactData>();
-            ICollection<IWebElement> elements = driver.FindElements(By.Name("selected[]"));
+            ICollection<IWebElement> elements = driver.FindElements(By.ClassName("entry"));
             foreach (IWebElement element in elements)
             {
                 contacts.Add(new ContactData(element.Text));
