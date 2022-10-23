@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,20 @@ namespace AddressBook_web_tests
         {
             ContactData newData = new ContactData("test11");
             newData.LastName = "test12";
-            ContactData contact = new ContactData("test1");
-            contact.LastName = "test2";
+            ContactData contact1 = new ContactData("test1");
+            contact1.LastName = "test2";
 
-            app.Contact.SelectContact(contact);
+            if (!app.Contact.IsElementPresent(By.ClassName("entry")))
+            {
+                app.Contact.InitContactCreation();
+                app.Contact.FillContactForm(contact1);
+                app.Contact.SubmitContactCreation();
+                app.Navigator.ReturnToHomePage();
+            }
+            app.Contact.SelectContact();
 
             List<ContactData> oldContacts = app.Contact.GetContactList();
+            //ContactData oldData = oldContacts[1];
 
             app.Contact.InitContactModification();
             app.Contact.FillContactForm(newData);
@@ -30,10 +39,18 @@ namespace AddressBook_web_tests
             Assert.AreEqual(oldContacts.Count, app.Contact.GetContactCount());
 
             List<ContactData> newContacts = app.Contact.GetContactList();
-            oldContacts[1].FirstName = newData.FirstName;
+            //oldContacts[1].FirstName = newData.FirstName;
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
+
+            foreach (ContactData contact in newContacts)
+            {
+                //if (contact.Id == oldData.Id)
+                {
+                    Assert.AreEqual(newData.FirstName, contact.FirstName);
+                }
+            }
         }
     }
 }

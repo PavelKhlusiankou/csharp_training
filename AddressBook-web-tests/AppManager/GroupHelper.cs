@@ -56,15 +56,8 @@ namespace AddressBook_web_tests
             return this;
         }
 
-        public GroupHelper SelectGroup(int index, GroupData group)
+        public GroupHelper SelectGroup(int index)
         {
-            if (!IsElementPresent(By.Name("selected[]")))
-            {
-                InitGroupCreation();
-                FillGroupForm(group);
-                SubmitGroupCreation();
-                ReturnToGroupsPage();
-            }
             driver.FindElement(By.XPath("//div[@id='content']/form/span[" + (index+1) + "]/input")).Click();
             return this;
         }
@@ -98,7 +91,10 @@ namespace AddressBook_web_tests
                 ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
                 foreach (IWebElement element in elements)
                 {
-                    groupCache.Add(new GroupData(element.Text));
+                    groupCache.Add(new GroupData(element.Text)
+                    {
+                        Id = element.FindElement(By.TagName("input")).GetAttribute("value")
+                    });
                 }
             }
             return new List<GroupData>(groupCache); 

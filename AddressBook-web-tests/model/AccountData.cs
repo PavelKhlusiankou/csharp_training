@@ -16,7 +16,7 @@ namespace AddressBook_web_tests
             this.username = username;
             this.password = password;   
         }
-        public string Username
+        public string Username 
         {
             get 
             { 

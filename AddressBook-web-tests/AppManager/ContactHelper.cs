@@ -63,15 +63,8 @@ namespace AddressBook_web_tests
             return this;
         }
 
-        public ContactHelper SelectContact(ContactData contact)
+        public ContactHelper SelectContact()
         {
-            if (!IsElementPresent(By.ClassName("entry")))
-            {
-                InitContactCreation();
-                FillContactForm(contact);
-                SubmitContactCreation();
-                manager.Navigator.ReturnToHomePage();
-            }
             driver.FindElement(By.Name("selected[]")).Click();
             return this;
         }
@@ -93,10 +86,13 @@ namespace AddressBook_web_tests
                 ICollection<IWebElement> elements = driver.FindElements(By.ClassName("entry"));
                 foreach (IWebElement element in elements)
                 {
-                    contactCache.Add(new ContactData(element.Text));
+                    contactCache.Add(new ContactData(element.Text)
+                    {
+                        Id = element.FindElement(By.TagName("input")).GetAttribute("value")
+                    });
                 }
             }
-            return contactCache;
+            return new List<ContactData>(contactCache);
         }
 
         public int GetContactCount()

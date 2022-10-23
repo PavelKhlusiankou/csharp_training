@@ -4,7 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
-
+using OpenQA.Selenium;
 
 namespace AddressBook_web_tests
 {
@@ -20,7 +20,15 @@ namespace AddressBook_web_tests
 
 
             app.Navigator.GoToGroupsPage();
-            app.Groups.SelectGroup(0, newData);
+            if (!app.Groups.IsElementPresent(By.Name("selected[]")))
+            {
+                app.Groups.InitGroupCreation();
+                app.Groups.FillGroupForm(newData);
+                app.Groups.SubmitGroupCreation();
+                app.Groups.ReturnToGroupsPage();
+            }
+            app.Groups.SelectGroup(0);
+            
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
@@ -32,9 +40,14 @@ namespace AddressBook_web_tests
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
 
-
+            GroupData toBeRemoved = oldGroups[0];
             oldGroups.RemoveAt(0);
             Assert.AreEqual(oldGroups, newGroups);
+
+            foreach (GroupData group in newGroups)
+            {
+                Assert.AreNotEqual(group.Id, toBeRemoved.Id);
+            }
         }
     }
 }
