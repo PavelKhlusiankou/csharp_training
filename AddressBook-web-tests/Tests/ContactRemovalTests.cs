@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -19,13 +20,7 @@ namespace AddressBook_web_tests
             ContactData newData = new ContactData("test11");
             newData.LastName = "test12";
 
-            if (!app.Contact.IsElementPresent(By.ClassName("entry")))
-            {
-                app.Contact.InitContactCreation();
-                app.Contact.FillContactForm(newData);
-                app.Contact.SubmitContactCreation();
-                app.Navigator.ReturnToHomePage();
-            }
+            app.Contact.IsContactsExist(newData);
             app.Contact.SelectContact();
 
             List<ContactData> oldContacts = app.Contact.GetContactList();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -100,5 +101,16 @@ namespace AddressBook_web_tests
             return driver.FindElements(By.CssSelector("[name='entry']")).Count;
         }
 
+        public ContactHelper IsContactsExist(ContactData contact)
+        {
+            if (!IsElementPresent(By.Name("selected[]")))
+            {
+                InitContactCreation();
+                FillContactForm(contact);
+                SubmitContactCreation();
+                manager.Navigator.ReturnToHomePage();
+            }
+            return this;
+        }
     }
 }
