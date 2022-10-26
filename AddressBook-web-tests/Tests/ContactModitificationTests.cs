@@ -34,6 +34,7 @@ namespace AddressBook_web_tests
 
             List<ContactData> newContacts = app.Contact.GetContactList();
             oldContacts[0].FirstName = newData.FirstName;
+            oldContacts[0].LastName = newData.LastName;
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);

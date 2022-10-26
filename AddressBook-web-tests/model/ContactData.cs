@@ -25,16 +25,16 @@ namespace AddressBook_web_tests
             {
                 return true;
             }
-            return FirstName == other.FirstName;
+            return FirstName == other.FirstName && LastName == other.LastName;
         }
 
         public override int GetHashCode()
         {
-            return FirstName.GetHashCode();
+            return FirstName.GetHashCode() & LastName.GetHashCode();
         }
         public override string ToString()
         {
-            return "name" + FirstName;
+            return "name=" + LastName + FirstName;
         }
 
         public int CompareTo(ContactData other)
@@ -43,7 +43,7 @@ namespace AddressBook_web_tests
             {
                 return 1;
             }
-            return FirstName.CompareTo(other.FirstName);
+            return FirstName.CompareTo(other.FirstName) ;
         }
         public string FirstName { get; set; }
 

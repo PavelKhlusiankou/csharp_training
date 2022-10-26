@@ -85,6 +85,7 @@ namespace AddressBook_web_tests
             {
                 contactCache = new List<ContactData>();
                 ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("[name='entry']"));
+                IList<IWebElement> cells = driver.FindElements(By.TagName("td"));
                 foreach (IWebElement element in elements)
                 {
                     contactCache.Add(new ContactData(element.Text)
@@ -95,7 +96,6 @@ namespace AddressBook_web_tests
             }
             return new List<ContactData>(contactCache);
         }
-
         public int GetContactCount()
         {
             return driver.FindElements(By.CssSelector("[name='entry']")).Count;
