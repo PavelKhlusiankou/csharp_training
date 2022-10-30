@@ -25,7 +25,7 @@ namespace AddressBook_web_tests
             List<ContactData> oldContacts = app.Contact.GetContactList();
             ContactData oldData = oldContacts[0];
 
-            app.Contact.InitContactModification();
+            app.Contact.InitContactModification(0);
             app.Contact.FillContactForm(newData);
             app.Contact.SubmitContactModification();
             app.Navigator.ReturnToHomePage();

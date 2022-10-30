@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using NUnit.Framework;
 
 namespace AddressBook_web_tests
 {
@@ -33,6 +34,7 @@ namespace AddressBook_web_tests
             contactHelper = new ContactHelper(this);
         }
 
+        [TearDown]
             ~ApplicationManager()
         {
             try
