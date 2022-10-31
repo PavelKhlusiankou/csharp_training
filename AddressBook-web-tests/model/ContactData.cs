@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using System.Security.Policy;
 
 namespace AddressBook_web_tests
 {
@@ -80,7 +82,7 @@ namespace AddressBook_web_tests
             {
                 return "";
             }
-            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+            return Regex.Replace(phone, "[ --()]", "") + "\r\n";
         }
 
         public string Email { get; set; }
@@ -90,9 +92,9 @@ namespace AddressBook_web_tests
         {
             get
             {
-                if (AllEmails != null)
+                if (_AllEmails != null)
                 {
-                    return AllEmails;
+                    return _AllEmails;
                 }
                 else
                 {
@@ -103,16 +105,17 @@ namespace AddressBook_web_tests
 
             set
             {
-                AllEmails = value;
+               _AllEmails = value;
             }
         }
+        private string _AllEmails;
              private string CleanUp2(string email)
         {
             if (email == null || email == "")
             {
                 return "";
             }
-            return email.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+            return Regex.Replace(email, "[ ]", "") + "\r\n";
         }
     }
 }
