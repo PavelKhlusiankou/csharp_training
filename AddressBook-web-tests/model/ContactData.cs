@@ -11,6 +11,8 @@ namespace AddressBook_web_tests
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         private string allPhones;
+        private string fullData;
+
 
         public ContactData(string name)
         {
@@ -19,11 +21,11 @@ namespace AddressBook_web_tests
 
         public bool Equals(ContactData other)
         {
-            if (object.ReferenceEquals(other, null))
+            if (Object.ReferenceEquals(other, null))
             {
                 return false;
             }
-            if (object.ReferenceEquals(this, other))
+            if (Object.ReferenceEquals(this, other))
             {
                 return true;
             }
@@ -32,11 +34,11 @@ namespace AddressBook_web_tests
 
         public override int GetHashCode()
         {
-            return FirstName.GetHashCode() & LastName.GetHashCode();
+            return (FirstName + " " + LastName).GetHashCode();
         }
         public override string ToString()
         {
-            return "name=" + LastName + FirstName;
+            return LastName + " " + FirstName;
         }
 
         public int CompareTo(ContactData other)
@@ -117,5 +119,34 @@ namespace AddressBook_web_tests
             }
             return Regex.Replace(email, "[ ]", "") + "\r\n";
         }
+        public string FullData
+        {
+            get
+            {
+                if (fullData != null)
+                {
+                    return fullData;
+                }
+                else
+                {
+                    return (CleanUp3(FirstName + LastName) + "\r\n" + CleanUp3(Address) + "\r\n" + "\r\n" + CleanUp3("H:" + HomePhone) + "\r\n" + CleanUp3(MobilePhone) + CleanUp3("W:" + WorkPhone) + "\r\n" + CleanUp3(Email) + CleanUp3(Email2) + CleanUp3(Email3)).Trim();
+                }
+
+            }
+
+            set
+            {
+                fullData = value;
+            }
+        }
+        private string CleanUp3(string data)
+        {
+            if (data == null || data == "")
+            {
+                return "";
+            }
+            return Regex.Replace(data, "[ ]", "");
+        }
+
     }
 }

@@ -172,5 +172,21 @@ namespace AddressBook_web_tests
             Match m = new Regex(@"\d+").Match(text);
             return Int32.Parse(m.Value);
         }
+
+        internal ContactData GetContactInformationFromContactDetails(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            OpenContactDetails();
+            string fullData = driver.FindElement(By.XPath("//div[@id='content']")).Text.Trim();
+
+            return new ContactData(fullData);
+
+        }
+
+        public ContactHelper OpenContactDetails()
+        {
+            driver.FindElement(By.XPath("//img[@alt='Details']")).Click();
+            return this;
+        }
     }
 }
