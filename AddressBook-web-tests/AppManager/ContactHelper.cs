@@ -91,14 +91,13 @@ namespace AddressBook_web_tests
                 contactCache = new List<ContactData>();
                 ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("[name='entry']"));
                 IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[0].FindElements(By.TagName("td"));
-                string lastName = cells[1].Text;
-                string firstName = cells[2].Text;
                 foreach (IWebElement element in elements)
                 {
                     contactCache.Add(new ContactData(element.Text)
                     {
-                        Id = element.FindElement(By.TagName("input")).GetAttribute("value")
-                    });
+                        FirstName = cells[2].Text,
+                        LastName = cells[1].Text
+                });
                 }
             }
             return new List<ContactData>(contactCache);
