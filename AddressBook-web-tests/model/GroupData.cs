@@ -14,6 +14,9 @@ namespace AddressBook_web_tests
             Name = name;
         }
 
+        public GroupData()
+        {
+        }
         public bool Equals(GroupData other)
         {
             if (object.ReferenceEquals(other, null)) 
