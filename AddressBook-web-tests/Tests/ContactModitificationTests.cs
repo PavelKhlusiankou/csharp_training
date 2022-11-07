@@ -33,10 +33,10 @@ namespace AddressBook_web_tests
             Assert.AreEqual(oldContacts.Count, app.Contact.GetContactCount());
 
             List<ContactData> newContacts = app.Contact.GetContactList();
-            oldContacts[0].FirstName = newData.FirstName;
-            oldContacts[0].LastName = newData.LastName;
             oldContacts.Sort();
             newContacts.Sort();
+            oldContacts[0].FirstName = newData.FirstName;
+            oldContacts[0].LastName = newData.LastName;
             Assert.AreEqual(oldContacts, newContacts);
 
             foreach (ContactData contact in newContacts)

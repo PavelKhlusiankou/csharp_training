@@ -90,9 +90,9 @@ namespace AddressBook_web_tests
             {
                 contactCache = new List<ContactData>();
                 ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("[name='entry']"));
-                IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[0].FindElements(By.TagName("td"));
                 foreach (IWebElement element in elements)
                 {
+                    IList<IWebElement> cells = element.FindElements(By.TagName("td"));
                     contactCache.Add(new ContactData(element.Text)
                     {
                         FirstName = cells[2].Text,

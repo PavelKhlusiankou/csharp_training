@@ -47,7 +47,7 @@ namespace AddressBook_web_tests
             {
                 return 1;
             }
-            return FirstName.CompareTo(other.FirstName) ;
+            return FirstName.CompareTo(other.FirstName) & LastName.CompareTo(other.LastName);
         }
         public string FirstName { get; set; }
 
