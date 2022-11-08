@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
+    <None Include="contacts.json" />
     <None Include="groups.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

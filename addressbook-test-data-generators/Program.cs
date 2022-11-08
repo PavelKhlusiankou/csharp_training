@@ -55,10 +55,35 @@ namespace addressbook_test_data_generators
                 {
                     System.Console.Out.Write("Unrecognized format" + format);
                 }
-                writer.Close();
+                List<ContactData> contacts = new List<ContactData>();
+                for (int i = 0; i < count; i++)
+                {
+                    contacts.Add(new ContactData(TestBase.GenerateRandomString(20))
+                    {
+                        LastName = TestBase.GenerateRandomString(20)
+                    });
+                }
+
+                if (format == "xml")
+                {
+                    writeContactsToXmlFile(contacts, writer);
+                }
+                else if (format == "json")
+                {
+                    writeContactsToJsonFile(contacts, writer);
+                }
+                else
+                {
+                    System.Console.Out.Write("Unrecognized format" + format);
+                }
+
+            
+            writer.Close();
             }
 
         }
+
+            
 
         static void writeGroupsToExcelFile(List<GroupData> groups, string filename)
         {
@@ -102,5 +127,21 @@ namespace addressbook_test_data_generators
         {
             writer.Write(JsonConvert.SerializeObject(groups, Newtonsoft.Json.Formatting.Indented));
         }
+
+        static void writeContactsToXmlFile(List<ContactData> contacts, StreamWriter writer)
+        {
+            new XmlSerializer(typeof(List<ContactData>)).Serialize(writer, contacts);
+        }
+
+        static void writeContactsToJsonFile(List<ContactData> contacts, StreamWriter writer)
+        {
+            writer.Write(JsonConvert.SerializeObject(contacts, Newtonsoft.Json.Formatting.Indented));
+        }
+
+
+
+
+
+
     }
 }
