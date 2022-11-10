@@ -47,12 +47,17 @@ namespace AddressBook_web_tests
             {
                 return 1;
             }
-            return FirstName.CompareTo(other.FirstName) & LastName.CompareTo(other.LastName);
-        }
+            return LastName.CompareTo(other.LastName);
+            
+            if (object.ReferenceEquals(other, null))
+                {
+                    return 1;
+                }
+                return FirstName.CompareTo(other.FirstName);
+            }
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
-        public string Id { get; set; }
         public string Address { get; set; }
         public string HomePhone { get; set; }
         public string MobilePhone { get; set; }

@@ -41,9 +41,9 @@ namespace AddressBook_web_tests
 
             foreach (ContactData contact in newContacts)
             {
-                if (contact.Id == oldData.Id)
+                if (contact.FirstName == oldData.FirstName)
                 {
-                    Assert.AreEqual(newData.FirstName, contact.FirstName);
+                    Assert.AreEqual(newData.LastName, contact.LastName);
                 }
             }
         }

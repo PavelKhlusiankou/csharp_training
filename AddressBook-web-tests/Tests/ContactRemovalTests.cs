@@ -39,7 +39,7 @@ namespace AddressBook_web_tests
 
             foreach (ContactData contact in newContacts)
             {
-                Assert.AreNotEqual(contact.Id, toBeRemoved.Id);
+                Assert.AreNotEqual(contact.FirstName, toBeRemoved.FirstName);
             }
         }
     }
