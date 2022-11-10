@@ -16,12 +16,13 @@ namespace addressbook_test_data_generators
 
     public class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args, string typegenerateddata)
         {
             int count = Convert.ToInt32(args[0]);
             string filename = args[1];
             string format = args[2];
 
+            
             List<GroupData> groups = new List<GroupData>();
             for (int i = 0; i < count; i++)
             {
@@ -55,6 +56,8 @@ namespace addressbook_test_data_generators
                 {
                     System.Console.Out.Write("Unrecognized format" + format);
                 }
+                
+                
                 List<ContactData> contacts = new List<ContactData>();
                 for (int i = 0; i < count; i++)
                 {
