@@ -161,6 +161,13 @@ namespace AddressBook_web_tests
             }
             return Regex.Replace(data, "[ \r\n H:W:M:]", "");
         }
+        public static List<ContactData> GetAll()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from g in db.Contacts select g).ToList();
+            }
+        }
 
     }
 }

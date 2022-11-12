@@ -16,7 +16,7 @@ namespace addressbook_test_data_generators
 
     public class Program
     {
-        static void Main(string[] args, string typegenerateddata)
+        static void Main(string[] args)
         {
             int count = Convert.ToInt32(args[0]);
             string filename = args[1];
@@ -58,27 +58,7 @@ namespace addressbook_test_data_generators
                 }
                 
                 
-                List<ContactData> contacts = new List<ContactData>();
-                for (int i = 0; i < count; i++)
-                {
-                    contacts.Add(new ContactData(TestBase.GenerateRandomString(20))
-                    {
-                        LastName = TestBase.GenerateRandomString(20)
-                    });
-                }
 
-                if (format == "xml")
-                {
-                    writeContactsToXmlFile(contacts, writer);
-                }
-                else if (format == "json")
-                {
-                    writeContactsToJsonFile(contacts, writer);
-                }
-                else
-                {
-                    System.Console.Out.Write("Unrecognized format" + format);
-                }
 
             
             writer.Close();

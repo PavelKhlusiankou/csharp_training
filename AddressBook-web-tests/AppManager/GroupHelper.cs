@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using Google.Protobuf.WellKnownTypes;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -56,12 +58,27 @@ namespace AddressBook_web_tests
             return this;
         }
 
+        public GroupHelper Remove(GroupData group)
+        {
+            SelectGroup2(group.Id);
+            driver.FindElement(By.Name("delete")).Click();
+            groupCache = null;
+            return this;
+        }
+
         public GroupHelper SelectGroup(int index)
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/span[" + (index+1) + "]/input")).Click();
             return this;
         }
-        public GroupHelper InitGroupCreation()
+
+        public GroupHelper SelectGroup2(String id)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='"+id+"'])")).Click();
+            return this;
+        }
+    
+    public GroupHelper InitGroupCreation()
         {
             driver.FindElement(By.Name("new")).Click();
             return this;
@@ -75,6 +92,12 @@ namespace AddressBook_web_tests
 
         public GroupHelper InitGroupModification()
         {
+            driver.FindElement(By.Name("edit")).Click();
+            return this;
+        }
+        public GroupHelper InitGroupModification2(GroupData group)
+        {
+            SelectGroup2(group.Id);
             driver.FindElement(By.Name("edit")).Click();
             return this;
         }
@@ -104,6 +127,8 @@ namespace AddressBook_web_tests
         {
             return driver.FindElements(By.CssSelector("span.group")).Count;
         }
+
+
     }
 
 }

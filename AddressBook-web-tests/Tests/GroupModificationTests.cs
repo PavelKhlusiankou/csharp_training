@@ -9,7 +9,7 @@ using OpenQA.Selenium;
 namespace AddressBook_web_tests
 {
     [TestFixture]
-    public class GroupModificationTests : AuthTestBase
+    public class GroupModificationTests : GroupTestBase
     {
         [Test]
         public void GroupModificationTest()
@@ -30,20 +30,19 @@ namespace AddressBook_web_tests
                     app.Groups.SubmitGroupCreation();
                     app.Groups.ReturnToGroupsPage();
                     }
-            app.Groups.SelectGroup(0);
 
 
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
-            GroupData oldData = oldGroups[0];
+            List<GroupData> oldGroups = GroupData.GetAll();
+            GroupData toBeModifided = oldGroups[0];
 
-            app.Groups.InitGroupModification();
+            app.Groups.InitGroupModification2(toBeModifided);
             app.Groups.FillGroupForm(newData);
             app.Groups.SubmitGroupModification();
             app.Groups.ReturnToGroupsPage();
 
             Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupCount());
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();
+            List<GroupData> newGroups = GroupData.GetAll();
             oldGroups[0].Name = newData.Name;
             oldGroups.Sort();
             newGroups.Sort();
@@ -51,7 +50,7 @@ namespace AddressBook_web_tests
 
             foreach (GroupData group in newGroups)
             {
-                if (group.Id == oldData.Id)
+                if (group.Id == toBeModifided.Id)
                 {
                     Assert.AreEqual(newData.Name, group.Name);
                 }
