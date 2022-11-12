@@ -50,13 +50,13 @@ namespace AddressBook_web_tests
                 return 1;
             }
             return LastName.CompareTo(other.LastName);
-            
+
             //if (object.ReferenceEquals(other, null))
-               // {
-                //    return 1;
-               // }
-               // return FirstName.CompareTo(other.FirstName);
-            }
+            // {
+            //    return 1;
+            // }
+            // return FirstName.CompareTo(other.FirstName);
+        }
         [Column(Name = "firstname")]
         public string FirstName { get; set; }
         [Column(Name = "lastname")]
@@ -69,11 +69,11 @@ namespace AddressBook_web_tests
         public string MobilePhone { get; set; }
         [Column(Name = "work")]
         public string WorkPhone { get; set; }
-        public string AllPhones 
+        public string AllPhones
         {
             get
             {
-                if(allPhones != null)
+                if (allPhones != null)
                 {
                     return allPhones;
                 }
@@ -114,18 +114,20 @@ namespace AddressBook_web_tests
                 }
                 else
                 {
-                    return (CleanUp2(Email) + CleanUp2(Email2) + CleanUp2(Email3)).Trim();
+                    return (CleanUp2(Email) + CleanUp2(Email2) + CleanUp2(Email3 + "\r\n\r\n\r\n\r\n\r\n")).Trim();
                 }
 
             }
 
             set
             {
-               _AllEmails = value;
+                _AllEmails = value;
             }
         }
         private string _AllEmails;
-             private string CleanUp2(string email)
+        private string _AllPhones2;
+
+        private string CleanUp2(string email)
         {
             if (email == null || email == "")
             {
@@ -143,7 +145,7 @@ namespace AddressBook_web_tests
                 }
                 else
                 {
-                    return (CleanUp3(FirstName + LastName)  + CleanUp3(Address) + CleanUp3(HomePhone) + CleanUp3(MobilePhone) + CleanUp3(WorkPhone)  + CleanUp3(AllEmails).Trim());
+                    return (CleanUp3(FirstName + LastName) + "\r\n" + CleanUp3(Address) + "\r\n" + "\r\n" + CleanUp3(AllPhones2) + "\r\n" + "\r\n" + CleanUp3(AllEmails).Trim());
                 }
 
             }
@@ -159,7 +161,7 @@ namespace AddressBook_web_tests
             {
                 return "";
             }
-            return Regex.Replace(data, "[ \r\n H:W:M:]", "");
+            return Regex.Replace(data, "[ H:W:M:]", "");
         }
         public static List<ContactData> GetAll()
         {
@@ -168,6 +170,35 @@ namespace AddressBook_web_tests
                 return (from g in db.Contacts select g).ToList();
             }
         }
+        public string AllPhones2
+        {
+            get
+            {
+                if (_AllPhones2 != null)
+                {
+                    return _AllPhones2;
+                }
+                else
+                {
+                    return (CleanUp4(HomePhone) + CleanUp4(MobilePhone) + CleanUp4(WorkPhone)).Trim();
+                }
 
+            }
+
+            set
+            {
+                _AllPhones2 = value;
+            }
+        }
+
+        private string CleanUp4(string phone)
+        {
+            if (phone == null || phone == "")
+            {
+                return "";
+            }
+            return Regex.Replace(phone, "[ ]", "") + "\r\n";
+
+        }
     }
 }
