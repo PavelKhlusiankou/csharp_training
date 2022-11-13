@@ -21,6 +21,9 @@ namespace AddressBook_web_tests
             FirstName = name;
         }
 
+        public ContactData()
+        {
+        }
         public bool Equals(ContactData other)
         {
             if (Object.ReferenceEquals(other, null))
@@ -190,6 +193,8 @@ namespace AddressBook_web_tests
                 _AllPhones2 = value;
             }
         }
+
+        public string Id { get; set; }
 
         private string CleanUp4(string phone)
         {

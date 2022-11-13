@@ -20,19 +20,18 @@ namespace AddressBook_web_tests
             contact1.LastName = "test2";
 
             app.Contact.IsContactsExist(contact1);
-            app.Contact.SelectContact();
 
-            List<ContactData> oldContacts = app.Contact.GetContactList();
-            ContactData oldData = oldContacts[0];
+            List<ContactData> oldContacts = ContactData.GetAll();
+            ContactData toBeModifided = oldContacts[0];
 
-            app.Contact.InitContactModification(0);
+            app.Contact.InitContactModification2(toBeModifided);
             app.Contact.FillContactForm(newData);
             app.Contact.SubmitContactModification();
             app.Navigator.ReturnToHomePage();
 
             Assert.AreEqual(oldContacts.Count, app.Contact.GetContactCount());
 
-            List<ContactData> newContacts = app.Contact.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAll();
             oldContacts.Sort();
             newContacts.Sort();
             oldContacts[0].FirstName = newData.FirstName;
@@ -41,7 +40,7 @@ namespace AddressBook_web_tests
 
             foreach (ContactData contact in newContacts)
             {
-                if (contact.FirstName == oldData.FirstName)
+                if (contact.FirstName == toBeModifided.FirstName)
                 {
                     Assert.AreEqual(newData.LastName, contact.LastName);
                 }

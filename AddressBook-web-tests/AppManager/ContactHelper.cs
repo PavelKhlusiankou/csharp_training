@@ -190,5 +190,26 @@ namespace AddressBook_web_tests
             driver.FindElement(By.XPath("//img[@alt='Details']")).Click();
             return this;
         }
+
+        public ContactHelper Remove(ContactData contact)
+        {
+            SelectContact2(contact.Id);
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            contactCache = null;
+            return this;
+        }
+        public ContactHelper SelectContact2(String id)
+        {
+            driver.FindElement(By.Name("selected[]")).Click();
+            return this;
+        }
+        public ContactHelper InitContactModification2(ContactData contact)
+        {
+            SelectContact2(contact.Id);
+            driver.FindElements(By.Name("entry"))[0]
+                    .FindElements(By.TagName("td"))[7]
+                  .FindElement(By.TagName("a")).Click();
+            return this;
+        }
     }
 }

@@ -21,19 +21,18 @@ namespace AddressBook_web_tests
             newData.LastName = "test12";
 
             app.Contact.IsContactsExist(newData);
-            app.Contact.SelectContact();
 
-            List<ContactData> oldContacts = app.Contact.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAll();
+            ContactData toBeRemoved = oldContacts[0];
 
-            app.Contact.RemoveContact();
+            app.Contact.Remove(toBeRemoved);
             app.Contact.ConfirmationOfDeleting();
             app.Navigator.GoToHomePage();
 
             Assert.AreEqual(oldContacts.Count - 1, app.Contact.GetContactCount());
 
-            List<ContactData> newContacts = app.Contact.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAll();
 
-            ContactData toBeRemoved = oldContacts[0];
             oldContacts.RemoveAt(0);
             Assert.AreEqual(oldContacts, newContacts);
 
