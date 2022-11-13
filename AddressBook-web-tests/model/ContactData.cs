@@ -115,7 +115,7 @@ namespace AddressBook_web_tests
                 }
                 else
                 {
-                    return (CleanUp2(Email) + CleanUp2(Email2) + CleanUp2(Email3 + "\r\n\r\n\r\n\r\n\r\n")).Trim();
+                    return (CleanUp2(Email) + CleanUp2(Email2) + CleanUp2(Email3)).Trim();
                 }
 
             }
@@ -146,7 +146,7 @@ namespace AddressBook_web_tests
                 }
                 else
                 {
-                    return (CleanUp3(FirstName + LastName) + "\r\n" + CleanUp3(Address) + "\r\n" + "\r\n" + CleanUp3(AllPhones2) + "\r\n" + "\r\n" + CleanUp3(AllEmails).Trim());
+                    return (CleanUp3(FirstName + LastName) + "\r\n" + CleanUp3(Address)+ "\r\n" + "\r\n" + CleanUp3(AllPhones2) + "\r\n" + "\r\n" + CleanUp3(AllEmails)).Trim();
                 }
 
             }
