@@ -50,15 +50,13 @@ namespace AddressBook_web_tests
         {
             if (object.ReferenceEquals(other, null))
             {
-                return 1;
+                return LastName.CompareTo(other.LastName);
             }
-            return LastName.CompareTo(other.LastName);
+            else
+            {
+                return FirstName.CompareTo(other.FirstName);
+            }
 
-            //if (object.ReferenceEquals(other, null))
-            // {
-            //    return 1;
-            // }
-            // return FirstName.CompareTo(other.FirstName);
         }
         [Column(Name = "firstname")]
         public string FirstName { get; set; }
