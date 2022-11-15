@@ -25,5 +25,22 @@ namespace AddressBook_web_tests
             oldList.Sort();
             Assert.AreEqual(oldList, newList);
         }
+
+        [Test]
+        public void TestRemovingContactFromGroup()
+        {
+            GroupData group = GroupData.GetAll()[0];
+            List<ContactData> oldList = group.GetContacts();
+            ContactData contact = ContactData.GetAll().Except(group.GetContacts()).First();
+            
+            
+            app.Contact.RemoveContactFromGroup(contact, group);
+
+            List<ContactData> newList = group.GetContacts();
+            oldList.RemoveAt(0);
+            newList.Sort();
+            oldList.Sort();
+            Assert.AreEqual(oldList, newList);
+        }
     }
 }
