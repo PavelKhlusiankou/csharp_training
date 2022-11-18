@@ -23,9 +23,10 @@ namespace addressbook_test_data_generators
             string filename = args[2];
             string format = args[3];
 
-            
-            List<GroupData> groups = new List<GroupData>();
-            if (typeData == "group")           
+
+            if (typeData == "group")
+            {
+                List<GroupData> groups = new List<GroupData>();
 
                 for (int i = 0; i < count; i++)
                 {
@@ -59,25 +60,27 @@ namespace addressbook_test_data_generators
                     {
                         System.Console.Out.Write("Unrecognized format" + format);
                     }
-                
 
-
+                }
+            }
+            else if (typeData == "contacts")
+            {
                 List<ContactData> contacts = new List<ContactData>();
-                if (typeData == "contacts")
-                    for (int i = 0; i < count; i++)
+                for (int i = 0; i < count; i++)
                 {
                     contacts.Add(new ContactData(TestBase.GenerateRandomString(20))
                     {
                         LastName = TestBase.GenerateRandomString(20)
                     });
                 }
+                StreamWriter writer = new StreamWriter(filename);
                 if (format == "xml")
                 {
                     writeContactsToXmlFile(contacts, writer);
                 }
                 else if (format == "json")
                 {
-                    writeContactsToJsonFile(contacts, writer);
+                   writeContactsToJsonFile(contacts, writer);
                 }
                 else
                 {
@@ -85,10 +88,13 @@ namespace addressbook_test_data_generators
                 }
                 writer.Close();
             }
-
+            else
+            {
+                System.Console.Out.Write("Unrecognized typeData" + typeData);
+            }
         }
 
-            
+
 
         static void writeGroupsToExcelFile(List<GroupData> groups, string filename)
         {
