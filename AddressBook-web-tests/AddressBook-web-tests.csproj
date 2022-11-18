@@ -158,7 +158,9 @@
   <ItemGroup>
     <None Include=".editorconfig" />
     <None Include="app.config" />
-    <None Include="contacts.json" />
+    <None Include="contacts.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="groups.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

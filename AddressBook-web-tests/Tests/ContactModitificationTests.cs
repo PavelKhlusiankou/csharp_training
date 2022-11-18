@@ -21,6 +21,7 @@ namespace AddressBook_web_tests
 
             app.Contact.IsContactsExist(contact1);
 
+
             List<ContactData> oldContacts = ContactData.GetAll();
             ContactData toBeModifided = oldContacts[0];
 
