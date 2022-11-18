@@ -43,6 +43,7 @@ namespace AddressBook_web_tests
             }
         
         [Test, TestCaseSource("ContactDataFromJsonFile")]
+
         public void AddNewUserTest(ContactData contact)
         {
 
