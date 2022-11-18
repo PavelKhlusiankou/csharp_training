@@ -48,13 +48,13 @@ namespace AddressBook_web_tests
 
         public int CompareTo(ContactData other)
         {
-            if (object.ReferenceEquals(other, null))
+            if (ReferenceEquals(other.LastName, LastName))
             {
-                return LastName.CompareTo(other.LastName);
+                return FirstName.CompareTo(other.FirstName);
             }
             else
             {
-                return FirstName.CompareTo(other.FirstName);
+                return LastName.CompareTo(other.LastName);
             }
 
         }
