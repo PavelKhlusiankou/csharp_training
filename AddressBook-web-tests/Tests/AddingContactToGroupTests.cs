@@ -35,6 +35,13 @@ namespace AddressBook_web_tests
             GroupData group = GroupData.GetAll()[0];
             List<ContactData> oldList = group.GetContacts();
             ContactData contact = ContactData.GetAll().Except(group.GetContacts()).First();
+            if (List.Count() = 0)
+            {
+                app.Contact.InitContactCreation();
+                app.Contact.FillContactForm(contact);
+                app.Contact.SubmitContactCreation();
+                app.Contact.manager.Navigator.ReturnToHomePage();
+            }
 
              app.Contact.AddContactToGroup(contact, group);
 
