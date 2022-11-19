@@ -200,7 +200,7 @@ namespace AddressBook_web_tests
         }
         public ContactHelper SelectContact2(String id)
         {
-            driver.FindElement(By.Name("selected[]")).Click();
+            driver.FindElement(By.Id(id)).Click();
             return this;
         }
         public ContactHelper InitContactModification2(ContactData contact)

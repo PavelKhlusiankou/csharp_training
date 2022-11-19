@@ -48,7 +48,7 @@ namespace AddressBook_web_tests
 
         public int CompareTo(ContactData other)
         {
-            if (ReferenceEquals(other.LastName, LastName))
+            if (LastName == other.LastName)
             {
                 return FirstName.CompareTo(other.FirstName);
             }
@@ -172,12 +172,7 @@ namespace AddressBook_web_tests
         {
             using (AddressBookDB db = new AddressBookDB())
             {
-                //if (db > 0)
                 return (from c in db.Contacts.Where(x => x.Deprecated == "0000-00-00 00:00:00") select c).ToList();
-                //} InitContactCreation();
-                //FillContactForm(contact);
-               // SubmitContactCreation();
-               // manager.Navigator.ReturnToHomePage();
             }
         }
         public string AllPhones2
