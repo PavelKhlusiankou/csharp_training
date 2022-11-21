@@ -1,4 +1,10 @@
-﻿namespace addressbook_tests_autoit2
+﻿using TestStack.White.UIItems;
+using TestStack.White.UIItems.WindowItems;
+using TestStack.White.UIItems.Finders;
+using TestStack.White.UIItems.TreeItems;
+using System.Au
+
+namespace addressbook_tests_white
 {
     public class GroupHelper : HelperBase
     {
@@ -7,11 +13,12 @@
 
         public void Add(GroupData newGroup)
         {
-            OpenGroupsDialogue();
-            aux.ControlClick(GROUPWINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d53");
-            aux.Send(newGroup.Name);
-            aux.Send("{ENTER}");
-            CloseGroupsDialogue();
+            Window dialogue = OpenGroupsDialogue();
+            dialogue.Get<Button>("uxNewAddressButton").Click();
+            dialogue.Get(SearchCriteria.ByControlType(ControlType.Edit))
+            //aux.Send(newGroup.Name);
+            //aux.Send("{ENTER}");
+            CloseGroupsDialogue(dialogue);
 
         }
         public void Remove()
@@ -34,33 +41,33 @@
             aux.MouseDown("right");
         }
 
-        private void CloseGroupsDialogue()
+        private void CloseGroupsDialogue(Window dialogue)
         {
-            aux.ControlClick(GROUPWINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d54");
+            dialogue.Get<Button>("uxCloseAddressButton").Click();
         }
 
-        private void OpenGroupsDialogue()
+        private Window OpenGroupsDialogue()
         {
-            aux.ControlClick(WINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d512");
-            aux.WinWait(GROUPWINTITLE);
+            manager.MainWindow.Get<Button>("groupButton").Click();
+            return manager.MainWindow.ModalWindow(GROUPWINTITLE);
         }
 
         public List<GroupData> GetGroupList()
         {
             List<GroupData> list = new List<GroupData>();   
-            OpenGroupsDialogue();
-            string count = aux.ControlTreeView(GROUPWINTITLE, "", "WindowsForms10.SysTreeView32.app.0.2c908d51", "GetItemCount", "#0", "");
-            for (int i = 0; i < int.Parse(count); i++)
+            Window  dialogue = OpenGroupsDialogue();
+            Tree tree = dialogue.Get<Tree>("uxAddressTreeView");
+            TreeNode root = tree.Nodes[0];
+            foreach (TreeNode item in root.Nodes)
             {
-                string item = aux.ControlTreeView(GROUPWINTITLE, "", "WindowsForms10.SysTreeView32.app.0.2c908d51", "GetText", "#0|#"+i, "");
                 list.Add(new GroupData()
                 {
-                    Name =item
+                    Name = item.Text
                 });
             }
 
 
-            CloseGroupsDialogue();
+            CloseGroupsDialogue(dialogue);
             return list;
         }
         
