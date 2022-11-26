@@ -12,6 +12,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using System.Text.RegularExpressions;
 using System.Reflection;
+using System.Runtime.Remoting.Contexts;
 
 namespace AddressBook_web_tests
 {
@@ -107,17 +108,7 @@ namespace AddressBook_web_tests
             return driver.FindElements(By.CssSelector("[name='entry']")).Count;
         }
 
-        public ContactHelper IsContactsExist(ContactData contact)
-        {
-            if (!IsElementPresent(By.Name("selected[]")))
-            {
-                InitContactCreation();
-                FillContactForm(contact);
-                SubmitContactCreation();
-                manager.Navigator.ReturnToHomePage();
-            }
-            return this;
-        }
+
 
         public ContactData GetContactInformationFromTable(int index)
         {
@@ -242,11 +233,11 @@ namespace AddressBook_web_tests
             new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
         }
 
-        public void RemoveContactFromGroup(ContactData contact, GroupData group)
+        public void RemoveContactFromGroup( GroupData group)
         {
             manager.Navigator.GoToHomePage();
             SelectGroupFilter(group.Name);
-            SelectContact2(contact.Id);
+            SelectContact();
             CommitRemovingContactFromGroup();
             new WebDriverWait(driver, TimeSpan.FromSeconds(10)).Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
         }
@@ -259,6 +250,49 @@ namespace AddressBook_web_tests
         private void SelectGroupFilter(string group)
         {
             new SelectElement(driver.FindElement(By.Name("group"))).SelectByText(group);
+        }
+
+        internal void SearchingContactsWithoutGroups(ContactData contact1)
+        {
+            manager.Navigator.GoToHomePage();
+            SelectGroupFilterNone();
+            IsContactsExist(contact1);
+        }
+        public void SelectGroupFilterNone()
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[none]");
+        }
+
+        internal void SearchingContactsInGroups(GroupData group)
+        {
+            manager.Navigator.GoToHomePage();
+            SelectGroupFilter(group.Name);
+            IsContactsExistInGroups( group);
+        }
+
+        private ContactHelper IsContactsExistInGroups( GroupData group)
+        {
+            if (!IsElementPresent(By.Name("selected[]")))
+            {
+                SelectGroupFilterNone();
+                SelectContact();
+                SelectGroupToAdd(group.Name);
+                CommitAddingContactToGroup();
+
+            }
+            return this;
+        }
+
+        public ContactHelper IsContactsExist(ContactData contact)
+        {
+            if (!IsElementPresent(By.Name("selected[]")))
+            {
+                InitContactCreation();
+                FillContactForm(contact);
+                SubmitContactCreation();
+                manager.Navigator.ReturnToHomePage();
+            }
+            return this;
         }
     }
 }
