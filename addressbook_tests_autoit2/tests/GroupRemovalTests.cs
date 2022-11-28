@@ -15,11 +15,10 @@ namespace addressbook_tests_autoit2
             app.Groups.Remove();
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
-            newGroups.RemoveAt(0);
             oldGroups.Sort();
             newGroups.Sort();
 
-            Assert.AreEqual(oldGroups, newGroups);
+            Assert.AreEqual(oldGroups.Count - 1, newGroups.Count());
         }
     }
 }

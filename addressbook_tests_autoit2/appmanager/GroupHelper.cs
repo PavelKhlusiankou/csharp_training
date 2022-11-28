@@ -21,17 +21,19 @@
             DeleteGroup();
         }
 
+
         private void DeleteGroup()
         {
             aux.ControlClick(GROUPWINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d51");
+            aux.WinWait("Delete group");
             aux.ControlClick("Delete group", "", "WindowsForms10.BUTTON.app.0.2c908d53");
+            aux.WinWait(GROUPWINTITLE);
             CloseGroupsDialogue();
         }
 
         private void SelectGroup()
         {
-            aux.ControlClick(GROUPWINTITLE, "", "WindowsForms10.SysTreeView32.app.0.2c908d51");
-            aux.MouseDown("right");
+            aux.ControlTreeView(GROUPWINTITLE, "", "WindowsForms10.SysTreeView32.app.0.2c908d51", "Select", $"#0|#0", "");
         }
 
         private void CloseGroupsDialogue()
