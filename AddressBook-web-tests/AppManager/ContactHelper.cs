@@ -194,11 +194,10 @@ namespace AddressBook_web_tests
             driver.FindElement(By.Id(id)).Click();
             return this;
         }
-        public ContactHelper InitContactModification2(ContactData contact)
+        public ContactHelper InitContactModification2(ContactData contact, String id)
         {
             SelectContact2(contact.Id);
-            driver.FindElements(By.Name("entry"))[0]
-                    .FindElements(By.TagName("td"))[7]
+            driver.FindElement(By.Id(id))
                   .FindElement(By.TagName("a")).Click();
             return this;
         }
