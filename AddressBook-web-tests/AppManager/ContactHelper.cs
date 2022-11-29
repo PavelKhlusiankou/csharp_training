@@ -194,11 +194,16 @@ namespace AddressBook_web_tests
             driver.FindElement(By.Id(id)).Click();
             return this;
         }
-        public ContactHelper InitContactModification2(ContactData contact, String id)
+        public ContactHelper InitContactModification2(ContactData contact)
         {
             SelectContact2(contact.Id);
-            driver.FindElement(By.Id(id))
-                  .FindElement(By.TagName("a")).Click();
+            ClickEditButton(contact.Id);
+            return this;
+        }
+
+        public ContactHelper ClickEditButton(String id)
+        {
+            driver.FindElement(By.CssSelector("[href='edit.php?id=" + (id) + "']")).Click();
             return this;
         }
 

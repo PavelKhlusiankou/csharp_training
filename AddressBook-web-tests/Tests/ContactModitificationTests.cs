@@ -26,6 +26,7 @@ namespace AddressBook_web_tests
             ContactData toBeModifided = oldContacts[0];
 
             app.Contact.InitContactModification2(toBeModifided);
+            app.Contact.FillContactForm(newData);
             app.Contact.SubmitContactModification();
             app.Navigator.ReturnToHomePage();
 
