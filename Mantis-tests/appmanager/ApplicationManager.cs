@@ -15,7 +15,9 @@ namespace Mantis_tests
         public IWebDriver driver;
         public string baseURL;
 
-        public RegistrationHelper Registration { get; }
+        public RegistrationHelper Registration { get; set; }
+
+        public FtpHelper Ftp { get; set; }
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
@@ -24,6 +26,7 @@ namespace Mantis_tests
             driver = new FirefoxDriver();
             baseURL = "http://localhost/addressbook";
             Registration = new RegistrationHelper(this);
+            Ftp = new FtpHelper(this);
         }
 
         [TearDown]
@@ -58,5 +61,7 @@ namespace Mantis_tests
                 return driver;
             }
         }
+        
+
     }
 }

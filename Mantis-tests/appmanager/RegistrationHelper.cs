@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenQA.Selenium;
 
 namespace Mantis_tests
 {
@@ -13,8 +14,14 @@ namespace Mantis_tests
         public void Register(AccountData account)
         {
             OpenMainPage();
+            OpenRegistrationForm();
             FillRegistrationForm(account);
             SubmitRegistration();
+        }
+
+        private void OpenRegistrationForm()
+        {
+            driver.FindElement(By.LinkText("Signup for a new account")).Click();
         }
 
         private void SubmitRegistration()
@@ -24,12 +31,14 @@ namespace Mantis_tests
 
         private void FillRegistrationForm(AccountData account)
         {
-            throw new NotImplementedException();
+            driver.FindElement(By.Name("username")).SendKeys(account.Name);
+            driver.FindElement(By.Name("email")).SendKeys(account.Email);
+
         }
 
         private void OpenMainPage()
         {
-            throw new NotImplementedException();
+            manager.Driver.Url = "http://localhost/mantisbt-2.25.4/login_page.php";
         }
     }
 }
