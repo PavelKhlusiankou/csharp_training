@@ -13,10 +13,10 @@ namespace Mantis_tests
         [SetUp]
         public void setUpConfig()
         {
-            app.Ftp.BackupFile("c:/xampp/htdocs/mantisbt-2.25.4/config/config_inc.php");
-            using (Stream localFile = File.Open("c:/xampp/htdocs/mantisbt-2.25.4/config/config_inc.php", FileMode.Open))
+            app.Ftp.BackupFile("/config_inc.php");
+            using (Stream localFile = File.Open("/config_inc.php", FileMode.Open))
             {
-                app.Ftp.Upload("c:/xampp/htdocs/mantisbt-2.25.4/config/config_inc.php", localFile);
+                app.Ftp.Upload("/config_inc.php", localFile);
             }
 
         }
@@ -38,7 +38,7 @@ namespace Mantis_tests
         [TearDown]
         public void restoreConfig()
         {
-            app.Ftp.RestoreBackupFile("c:/xampp/htdocs/mantisbt-2.25.4/config/config_inc.php");
+            app.Ftp.RestoreBackupFile("/config_inc.php");
         }
     }
 
