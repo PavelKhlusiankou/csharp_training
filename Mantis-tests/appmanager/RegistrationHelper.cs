@@ -31,8 +31,8 @@ namespace Mantis_tests
 
         private void FillRegistrationForm(AccountData account)
         {
-            driver.FindElement(By.Name("username")).SendKeys(account.Name);
-            driver.FindElement(By.Name("email")).SendKeys(account.Email);
+           // driver.FindElement(By.Name("username")).SendKeys(account.Name);
+           // driver.FindElement(By.Name("email")).SendKeys(account.Email);
 
         }
 

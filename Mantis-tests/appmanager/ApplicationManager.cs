@@ -20,13 +20,15 @@ namespace Mantis_tests
         public FtpHelper Ftp { get; set; }
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
+        public LoginHelper loginHelper;
 
         private ApplicationManager()
         {
             driver = new FirefoxDriver();
-            baseURL = "http://localhost/addressbook";
-            Registration = new RegistrationHelper(this);
+            baseURL = "http://localhost/mantisbt-2.25.4";
+            //Registration = new RegistrationHelper(this);
             Ftp = new FtpHelper(this);
+            loginHelper = new LoginHelper(this);
         }
 
         [TearDown]
@@ -61,7 +63,14 @@ namespace Mantis_tests
                 return driver;
             }
         }
-        
+
+        public LoginHelper Auth
+        {
+            get
+            {
+                return loginHelper;
+            }
+        }
 
     }
 }
