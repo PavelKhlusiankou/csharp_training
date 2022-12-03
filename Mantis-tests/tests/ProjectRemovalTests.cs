@@ -12,7 +12,7 @@ namespace Mantis_tests
     [TestFixture]
     public class ProjectRemovalTests : AuthTestBase
     {
-         [Test]
+    [Test]
         public void ProjectRemovalTest()
         {
             ProjectData newData = new ProjectData("test99");
@@ -26,7 +26,6 @@ namespace Mantis_tests
                 app.Project.SubmitProjectCreation();
                 app.Project.ReturnToProjectPage();
             }
-
 
             List<ProjectData> oldProjects = app.Project.GetProjectList();
             ProjectData toBeRemoved = oldProjects[0];

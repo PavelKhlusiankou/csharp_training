@@ -17,7 +17,6 @@ namespace Mantis_tests
         {
             ProjectData project = new ProjectData("test 1");
 
-
             List<ProjectData> oldProjects = app.Project.GetProjectList();
 
             app.Project.Create(project);
@@ -28,8 +27,8 @@ namespace Mantis_tests
             oldProjects.Add(project);
             oldProjects.Sort();
             newProjects.Sort();
-            app.Project.Remove(project);
             Assert.AreEqual(oldProjects, newProjects);
+            app.Project.Remove(project);
 
         }
     }

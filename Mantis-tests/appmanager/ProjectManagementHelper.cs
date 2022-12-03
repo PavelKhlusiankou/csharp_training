@@ -85,7 +85,6 @@ namespace Mantis_tests
             SubmitProjectDeleting();
             projectCache = null;
             return this;
-
         }
 
         public ProjectManagementHelper SubmitProjectDeleting()
