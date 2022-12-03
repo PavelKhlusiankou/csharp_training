@@ -40,8 +40,8 @@ namespace Mantis_tests
 
         private string GetLoggerUserName()
         {
-            string text = driver.FindElement(By.Name("logout")).FindElement(By.TagName("b")).Text;
-            return text.Substring(1, text.Length - 2);
+            string text = driver.FindElement(By.CssSelector("span.user-info")).Text;
+            return text;
         }
 
         public void Logout()

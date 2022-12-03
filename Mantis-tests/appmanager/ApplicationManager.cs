@@ -21,6 +21,10 @@ namespace Mantis_tests
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
         public LoginHelper loginHelper;
+        public ManagementMenuHelper managementMenuHelper;
+        public ProjectManagementHelper projectManagementHelper;
+
+
 
         private ApplicationManager()
         {
@@ -29,6 +33,8 @@ namespace Mantis_tests
             //Registration = new RegistrationHelper(this);
             Ftp = new FtpHelper(this);
             loginHelper = new LoginHelper(this);
+            managementMenuHelper = new ManagementMenuHelper(this);
+            projectManagementHelper = new ProjectManagementHelper(this);
         }
 
         [TearDown]
@@ -69,6 +75,20 @@ namespace Mantis_tests
             get
             {
                 return loginHelper;
+            }
+        }
+        public ManagementMenuHelper Menu
+        {
+            get
+            {
+                return managementMenuHelper;
+            }
+        }
+        public ProjectManagementHelper Project
+        {
+            get
+            {
+                return projectManagementHelper;
             }
         }
 
