@@ -15,6 +15,9 @@ namespace Mantis_tests
             this.name = name;
             this.password = password;
         }
+        public AccountData()
+        {
+        }
 
         public string Name
         {

@@ -15,26 +15,27 @@ namespace Mantis_tests
     [Test]
         public void ProjectRemovalTest()
         {
-            ProjectData newData = new ProjectData("test99");
+            ProjectData project = new ProjectData("test99");
 
             app.Menu.GoToManagementMenu();
             app.Menu.OpenProjectTab();
             if (!app.Project.IsElementPresent(By.CssSelector("[href*='manage_proj_edit_page']")))
             {
-                app.Project.InitProjectCreation();
-                app.Project.FillProjectForm(newData);
-                app.Project.SubmitProjectCreation();
-                app.Project.ReturnToProjectPage();
+                //app.Project.InitProjectCreation();
+                //app.Project.FillProjectForm(project);
+                //app.Project.SubmitProjectCreation();
+                //app.Project.ReturnToProjectPage();
+                app.API.CreateProject();
             }
 
-            List<ProjectData> oldProjects = app.Project.GetProjectList();
+            List<ProjectData> oldProjects = app.API.GetProjectList();
             ProjectData toBeRemoved = oldProjects[0];
 
             app.Project.Remove(toBeRemoved);
 
             Assert.That(app.Project.GetProjectCount(), Is.EqualTo(oldProjects.Count - 1));
 
-            List<ProjectData> newProjects = app.Project.GetProjectList();
+            List<ProjectData> newProjects = app.API.GetProjectList();
 
             oldProjects.RemoveAt(0);
 
