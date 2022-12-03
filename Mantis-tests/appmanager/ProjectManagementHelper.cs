@@ -77,7 +77,6 @@ namespace Mantis_tests
         {
             return driver.FindElements(By.CssSelector("[href*='manage_proj_edit_page']")).Count;
         }
-
         public ProjectManagementHelper Remove(ProjectData project)
         {
             OpenProject(project.Id);

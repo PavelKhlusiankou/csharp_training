@@ -27,7 +27,8 @@ namespace Mantis_tests
             oldProjects.Add(project);
             oldProjects.Sort();
             newProjects.Sort();
-            Assert.AreEqual(oldProjects, newProjects);
+            Assert.That(newProjects, Is.EqualTo(oldProjects));
+            
             app.Project.Remove(project);
 
         }

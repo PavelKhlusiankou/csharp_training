@@ -17,9 +17,10 @@ namespace Mantis_tests
 
         public ManagementMenuHelper GoToManagementMenu()
         {
-            driver.FindElement(By.XPath("//*/text()[normalize-space(.)='Manage']/parent::*")).Click();
+            driver.FindElement(By.XPath("//div[@id='sidebar']/ul/li[7]/a/i")).Click();
             return this;
         }
+
         public ManagementMenuHelper OpenProjectTab()
         {
             driver.FindElement(By.LinkText("Manage Projects")).Click();

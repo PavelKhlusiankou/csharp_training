@@ -37,12 +37,9 @@ namespace Mantis_tests
             List<ProjectData> newProjects = app.Project.GetProjectList();
 
             oldProjects.RemoveAt(0);
+
             Assert.That(newProjects, Is.EqualTo(oldProjects));
 
-            foreach (ProjectData project in newProjects)
-            {
-                Assert.That(toBeRemoved.Id, Is.Not.EqualTo(project.Id));
-            }
         }
     }
 }
