@@ -15,20 +15,22 @@ namespace Mantis_tests
          [Test]
         public void ProjectCreationTest()
         {
-            ProjectData projectname = new ProjectData("test 1");
+            ProjectData project = new ProjectData("test 1");
 
 
             List<ProjectData> oldProjects = app.Project.GetProjectList();
 
-            app.Project.Create(projectname);
+            app.Project.Create(project);
 
             Assert.That(app.Project.GetProjectCount(), Is.EqualTo(oldProjects.Count +1));
 
             List<ProjectData> newProjects = app.Project.GetProjectList();
-            oldProjects.Add(projectname);
+            oldProjects.Add(project);
             oldProjects.Sort();
             newProjects.Sort();
+            app.Project.Remove(project);
             Assert.AreEqual(oldProjects, newProjects);
+
         }
     }
 }

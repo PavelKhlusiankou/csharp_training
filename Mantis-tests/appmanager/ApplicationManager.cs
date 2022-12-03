@@ -35,6 +35,7 @@ namespace Mantis_tests
             loginHelper = new LoginHelper(this);
             managementMenuHelper = new ManagementMenuHelper(this);
             projectManagementHelper = new ProjectManagementHelper(this);
+            Admin = new AdminHelper(this);
         }
 
         [TearDown]
@@ -91,6 +92,7 @@ namespace Mantis_tests
                 return projectManagementHelper;
             }
         }
+        public AdminHelper Admin { get; set; }
 
     }
 }

@@ -102,7 +102,7 @@ namespace Mantis_tests
 
         public ProjectManagementHelper OpenProject(String id)
         {
-            driver.FindElement(By.XPath("//a[contains(@href, 'manage_proj_edit_page.php?project_id='" + id + "'')]")).Click();
+            driver.FindElement(By.XPath("//a[contains(@href, 'manage_proj_edit_page.php?project_id=" + (id) + "')]")).Click();
             return this;
         }
         public List<ProjectData> GetProjectList()
