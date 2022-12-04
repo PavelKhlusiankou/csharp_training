@@ -17,7 +17,7 @@ namespace Mantis_tests
 
         public ManagementMenuHelper GoToManagementMenu()
         {
-            driver.FindElement(By.CssSelector("i.fa.fa-gears.menu-icon")).Click();
+            driver.FindElement(By.XPath("//div[@id='sidebar']/ul/li[7]/a/i")).Click();
             return this;
         }
 

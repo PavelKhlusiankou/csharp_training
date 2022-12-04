@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,8 +15,8 @@ namespace Mantis_tests
 
         public void CreateNewIssue(AccountData account, ProjectData project, IsuueData issueData)
         {
-            Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
-            Mantis.IssueData issue = new Mantis.IssueData();
+            Mantis.MantisConnectProtTypeClient client = new Mantis.MantisConnectProtTypeClient();
+            Mantis.IsuueData issue = new Mantis.IsuueData();
             issue.summary = issueData.Summary;
             issue.description = issueData.Description;
             issue.category = issueData.Category;
@@ -25,19 +24,20 @@ namespace Mantis_tests
             issue.project.id = project.Id;
             client.mc_issue_add(account.Name, account.Password, issue);
         }
-        public List<ProjectData> GetProjectList(AccountData account)
+        public List<ProjectData> GetProjectList()
         {
-            Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
-            client.mc_projects_get_user_accessible(account.Name, account.Password);
+            Mantis.MantisConnectProtTypeClient client = new Mantis.MantisConnectProtTypeClient();
+            Mantis.ProjectData project = new Mantis.ProjectData();
+            client.mc_projects_get_user_accessible(project);
             return new List<ProjectData>();
         }
 
-        public void CreateProject(AccountData account, ProjectData projectData)
+        public void CreateProject()
         {
-            Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
+            Mantis.MantisConnectProtTypeClient client = new Mantis.MantisConnectProtTypeClient();
             Mantis.ProjectData project = new Mantis.ProjectData();
-            project.name = projectData.ProjectName;
-            client.mc_project_add(account.Name, account.Password, project);
+            project.name = project.ProjectName;
+            client.mc_project_add(project);
         }
     }
 }

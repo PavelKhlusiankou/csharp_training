@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Net.FtpClient;
-//using System.Diagnostics.Metrics;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using NUnit.Framework;
 

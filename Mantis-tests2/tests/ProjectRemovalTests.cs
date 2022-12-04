@@ -6,7 +6,6 @@ using NUnit.Framework;
 using System.Linq;
 using System.Data;
 using OpenQA.Selenium;
-using System.Collections.Generic;
 
 namespace Mantis_tests
 {
@@ -16,15 +15,7 @@ namespace Mantis_tests
     [Test]
         public void ProjectRemovalTest()
         {
-            ProjectData project = new ProjectData()
-            {
-                ProjectName = "test99"
-            };
-            AccountData account = new AccountData()
-            {
-                Name = "Administrator",
-                Password = "root"
-            };
+            ProjectData project = new ProjectData("test99");
 
             app.Menu.GoToManagementMenu();
             app.Menu.OpenProjectTab();
@@ -34,18 +25,17 @@ namespace Mantis_tests
                 //app.Project.FillProjectForm(project);
                 //app.Project.SubmitProjectCreation();
                 //app.Project.ReturnToProjectPage();
-                app.API.CreateProject(account, project);
+                app.API.CreateProject();
             }
-            List<ProjectData> oldProjects = app.Project.GetProjectList();
-            //List<ProjectData> oldProjects = app.API.GetProjectList(account);
+
+            List<ProjectData> oldProjects = app.API.GetProjectList();
             ProjectData toBeRemoved = oldProjects[0];
 
             app.Project.Remove(toBeRemoved);
 
             Assert.That(app.Project.GetProjectCount(), Is.EqualTo(oldProjects.Count - 1));
 
-            List<ProjectData> newProjects = app.Project.GetProjectList();
-            //List<ProjectData> newProjects = app.API.GetProjectList(account);
+            List<ProjectData> newProjects = app.API.GetProjectList();
 
             oldProjects.RemoveAt(0);
 

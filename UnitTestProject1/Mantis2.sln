@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mantis-tests", "Mantis-tests.csproj", "{85348305-EC9E-4548-8D0D-36869A517FAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mantis", "Mantis.csproj", "{020F34AA-C180-4634-986E-701DA6083B63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{85348305-EC9E-4548-8D0D-36869A517FAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85348305-EC9E-4548-8D0D-36869A517FAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85348305-EC9E-4548-8D0D-36869A517FAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85348305-EC9E-4548-8D0D-36869A517FAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{020F34AA-C180-4634-986E-701DA6083B63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{020F34AA-C180-4634-986E-701DA6083B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{020F34AA-C180-4634-986E-701DA6083B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{020F34AA-C180-4634-986E-701DA6083B63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {FDA49D92-5291-44BA-AF22-B4B81A6BD91F}
+		SolutionGuid = {BBD6E215-B9B3-420E-BE82-0037472BC80D}
 	EndGlobalSection
 EndGlobal
