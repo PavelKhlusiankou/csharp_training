@@ -23,15 +23,15 @@ namespace Mantis_tests
                 Password = "root"
             };
 
-            // List<ProjectData> oldProjects = app.Project.GetProjectList();
-            List<ProjectData> oldProjects = app.API.GetProjectList(account);
+             List<ProjectData> oldProjects = app.Project.GetProjectList();
+            //List<ProjectData> oldProjects = app.API.GetProjectList(account);
 
             app.Project.Create(project);
 
             //Assert.That(app.Project.GetProjectCount(), Is.EqualTo(oldProjects.Count + 1));
 
-            //List<ProjectData> newProjects = app.Project.GetProjectList();
-            List<ProjectData> newProjects = app.API.GetProjectList(account);
+            List<ProjectData> newProjects = app.Project.GetProjectList();
+            //List<ProjectData> newProjects = app.API.GetProjectList(account);
             oldProjects.Add(project);
             oldProjects.Sort();
             newProjects.Sort();

@@ -37,6 +37,7 @@ namespace Mantis_tests
         public ProjectManagementHelper SubmitProjectCreation()
         {
             driver.FindElement(By.XPath("//input[@value='Add Project']")).Click();
+            projectCache = null;
             return this;
         }
 
@@ -103,6 +104,7 @@ namespace Mantis_tests
             driver.FindElement(By.XPath("//a[contains(@href, 'manage_proj_edit_page.php?project_id=" + (id) + "')]")).Click();
             return this;
         }
+
         public List<ProjectData> GetProjectList()
         {
             if (projectCache == null)
@@ -118,6 +120,8 @@ namespace Mantis_tests
             }
             return new List<ProjectData>(projectCache);
         }
+
+
 
     }
 }
