@@ -9,19 +9,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.ComponentModel.DataAnnotations.Schema;
-using LinqToDB.Mapping;
-using ColumnAttribute = LinqToDB.Mapping.ColumnAttribute;
-using TableAttribute = LinqToDB.Mapping.TableAttribute;
 
 namespace Mantis_tests
 {
-    [Table(Name = "mantis_project_table")]
     public class ProjectData : IEquatable<ProjectData>, IComparable<ProjectData>
     {
-        [Column(Name = "name")]
         public string ProjectName { get; set; }
        
-        [Column(Name = "id")]
         public string Id { get; set; }
 
         public ProjectData(string name)

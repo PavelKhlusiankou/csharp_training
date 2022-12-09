@@ -35,6 +35,7 @@ namespace Mantis_tests
                 //app.Project.SubmitProjectCreation();
                 //app.Project.ReturnToProjectPage();
                 app.API.CreateProject(account, project);
+                app.Menu.OpenProjectTab();
             }
             //List<ProjectData> oldProjects = app.Project.GetProjectList();
             List<ProjectData> oldProjects = app.API.GetProjectList(account);
