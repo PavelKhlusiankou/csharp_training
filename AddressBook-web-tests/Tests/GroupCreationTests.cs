@@ -120,6 +120,7 @@ namespace AddressBook_web_tests
         }
         [Test]
         public void TestDBConnectivity()
+
         {
                 foreach (ContactData contact in GroupData.GetAll()[0].GetContacts()) 
             { 
