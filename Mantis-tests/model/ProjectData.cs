@@ -58,13 +58,5 @@ namespace Mantis_tests
         {
             return ProjectName.GetHashCode();
         }
-
-        public static List<ProjectData> GetAll()
-        {
-            using (Mantis_testsDB db = new Mantis_testsDB())
-            {
-                return (from p in db.Project select p).ToList();
-            }
-        }
     }
 }

@@ -135,7 +135,6 @@
     </Compile>
     <Compile Include="model\AccountData.cs" />
     <Compile Include="model\IsuueData.cs" />
-    <Compile Include="model\Mantis-testsDB.cs" />
     <Compile Include="model\ProjectData.cs" />
     <Compile Include="tests\AccountCreationTests.cs" />
     <Compile Include="tests\AddNewIssue.cs" />
