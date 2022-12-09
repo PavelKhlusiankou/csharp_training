@@ -7,7 +7,7 @@ using LinqToDB.Mapping;
 
 namespace AddressBook_web_tests
 {
-    [Table(Name = "mantis_project_table")]
+    [Table(Name = "group_list")]
 
 
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>

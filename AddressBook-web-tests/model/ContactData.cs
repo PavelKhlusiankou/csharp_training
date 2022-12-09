@@ -34,7 +34,7 @@ namespace AddressBook_web_tests
             {
                 return true;
             }
-            return FirstName == other.FirstName && LastName == other.LastName;
+            return FirstName == other.FirstName && LastName == other.LastName && Id == other.Id;
         }
 
         public override int GetHashCode()
