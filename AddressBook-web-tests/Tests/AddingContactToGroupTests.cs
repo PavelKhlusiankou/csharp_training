@@ -72,15 +72,14 @@ namespace AddressBook_web_tests
             app.Contact.SearchingContactsWithoutGroups(contact1);
 
             GroupData group = GroupData.GetAll()[0];
-            List<ContactData> oldList = group.GetContacts();
             ContactData contact = ContactData.GetAll().Except(group.GetContacts()).First();
-
             app.Contact.SearchingContactsInGroups(group);
-
+            List<ContactData> oldList = group.GetContacts();
+          
             app.Contact.RemoveContactFromGroup( group);
 
             List<ContactData> newList = group.GetContacts();
-            oldList.Remove(contact1);
+            oldList.RemoveAt(0);
             newList.Sort();
             oldList.Sort();
             Assert.AreEqual(oldList, newList);
