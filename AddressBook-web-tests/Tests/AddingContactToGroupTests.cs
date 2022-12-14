@@ -80,7 +80,7 @@ namespace AddressBook_web_tests
             app.Contact.RemoveContactFromGroup( group);
 
             List<ContactData> newList = group.GetContacts();
-            oldList.RemoveAt(0);
+            oldList.Remove(contact1);
             newList.Sort();
             oldList.Sort();
             Assert.AreEqual(oldList, newList);
